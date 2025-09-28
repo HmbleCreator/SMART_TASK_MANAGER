@@ -1,18 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
-  skipTrailingSlashRedirect: true,
-  distDir: 'dist',
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  reactStrictMode: true,
   images: {
-    unoptimized: true,
+    unoptimized: true, // Optional: speeds up deployment if you're not using Image Optimization
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
