@@ -117,21 +117,7 @@ interface CustomPayload {
   dataKey?: string
 }
 
-function ChartTooltipContent({
-  active,
-  payload,
-  className,
-  indicator = 'dot',
-  hideLabel = false,
-  hideIndicator = false,
-  label,
-  labelFormatter,
-  labelClassName,
-  formatter,
-  color,
-  nameKey,
-  labelKey,
-}: TooltipProps<CustomPayload, string> &
+function ChartTooltipContent(props: TooltipProps<CustomPayload, string> &
   React.ComponentProps<'div'> & {
     hideLabel?: boolean
     hideIndicator?: boolean
@@ -139,8 +125,26 @@ function ChartTooltipContent({
     nameKey?: string
     labelKey?: string
   }) {
+  
+  const {
+    active,
+    className,
+    hideLabel = false,
+    hideIndicator = false,
+    indicator = 'dot',
+    label,
+    labelFormatter,
+    labelClassName,
+    formatter,
+    color,
+    nameKey,
+    labelKey,
+  } = props
 
-}  const { config } = useChart()
+  // Access payload from props instead of destructuring
+  const payload = props.payload
+
+  const { config } = useChart()
 
   const tooltipLabel = React.useMemo(() => {
     if (hideLabel || !payload?.length) {
@@ -196,7 +200,7 @@ function ChartTooltipContent({
         {payload.map((item, index) => {
           const key = `${nameKey || item.name || item.dataKey || 'value'}`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
-          const indicatorColor = color || item.payload.fill || item.color
+          const indicatorColor = color || item.payload?.fill || item.color
 
           return (
             <div
