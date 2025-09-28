@@ -106,17 +106,10 @@ const ChartTooltip = RechartsPrimitive.Tooltip
 
 import { TooltipProps } from 'recharts'
 
-function ChartTooltipContent(props: TooltipProps<any, string> &
-  React.ComponentProps<'div'> & {
-    hideLabel?: boolean
-    hideIndicator?: boolean
-    indicator?: 'line' | 'dot' | 'dashed'
-    nameKey?: string
-    labelKey?: string
-  }) {
-  
+function ChartTooltipContent(props: any) {
   const {
     active,
+    payload,
     className,
     hideLabel = false,
     hideIndicator = false,
@@ -129,9 +122,6 @@ function ChartTooltipContent(props: TooltipProps<any, string> &
     nameKey,
     labelKey,
   } = props
-
-  // Access payload from props instead of destructuring
-  const payload = props.payload
 
   const { config } = useChart()
 
