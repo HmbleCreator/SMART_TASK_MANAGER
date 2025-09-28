@@ -14,12 +14,18 @@ import { LayoutDashboard, CheckSquare, BarChart3, User, Bell, Settings } from "l
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
+
   const [profile, setProfile] = useLocalStorage("user-profile", {
     name: "Welcome User",
     email: "user@example.com",
     profilePicture: "",
     joinDate: new Date().toISOString(),
   })
+
+  // ✅ Type-safe wrapper to fix Vercel build error
+  const handleUpdateProfile = (updatedProfile: typeof profile) => {
+    setProfile(updatedProfile)
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -72,13 +78,8 @@ export default function Home() {
           </TabsList>
 
           <TabsContent value="dashboard" className="space-y-6">
-            {/* User Profile Section */}
-            <UserProfile profile={profile} onUpdateProfile={setProfile} />
-
-            {/* Stats Overview */}
+            <UserProfile profile={profile} onUpdateProfile={handleUpdateProfile} />
             <TaskStats />
-
-            {/* Progress Overview */}
             <ProgressOverview />
           </TabsContent>
 
@@ -95,7 +96,7 @@ export default function Home() {
           </TabsContent>
 
           <TabsContent value="profile">
-            <UserProfile profile={profile} onUpdateProfile={setProfile} />
+            <UserProfile profile={profile} onUpdateProfile={handleUpdateProfile} />
           </TabsContent>
 
           <TabsContent value="settings">
