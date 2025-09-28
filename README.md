@@ -3,7 +3,7 @@
 A beautiful, interactive task management application with progress tracking, analytics, and smart features—built during the Edunet internship to demonstrate full-stack proficiency and deployment strategy.
 
 ![Smart Task Manager Demo](demo.gif)  
-🔗 [Live Demo](https://your-deployment-url.com)
+🔗 [Live Demo]([https://your-deployment-url.com](https://smart-task-manager-iota.vercel.app/))
 
 ---
 
