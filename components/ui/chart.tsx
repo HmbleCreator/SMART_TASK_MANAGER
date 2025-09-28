@@ -106,18 +106,7 @@ const ChartTooltip = RechartsPrimitive.Tooltip
 
 import { TooltipProps } from 'recharts'
 
-interface CustomPayload {
-  name: string
-  value: number
-  payload?: {
-    fill?: string
-    [key: string]: any
-  }
-  color?: string
-  dataKey?: string
-}
-
-function ChartTooltipContent(props: TooltipProps<CustomPayload, string> &
+function ChartTooltipContent(props: TooltipProps<any, string> &
   React.ComponentProps<'div'> & {
     hideLabel?: boolean
     hideIndicator?: boolean
