@@ -12,18 +12,26 @@ import { useLocalStorage } from "@/hooks/use-local-storage"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { LayoutDashboard, CheckSquare, BarChart3, User, Bell, Settings } from "lucide-react"
 
+// ✅ Define the UserProfile type inline or import it from your types file
+interface UserProfile {
+  name: string
+  email: string
+  profilePicture?: string
+  joinDate: string
+}
+
 export default function Home() {
   const [mounted, setMounted] = useState(false)
 
-  const [profile, setProfile] = useLocalStorage("user-profile", {
+  const [profile, setProfile] = useLocalStorage<UserProfile>("user-profile", {
     name: "Welcome User",
     email: "user@example.com",
     profilePicture: "",
     joinDate: new Date().toISOString(),
   })
 
-  // ✅ Type-safe wrapper to fix Vercel build error
-  const handleUpdateProfile = (updatedProfile: typeof profile) => {
+  // ✅ Type-safe wrapper to match expected prop signature
+  const handleUpdateProfile = (updatedProfile: UserProfile) => {
     setProfile(updatedProfile)
   }
 
